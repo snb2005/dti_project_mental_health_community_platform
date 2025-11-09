@@ -1,0 +1,532 @@
+================================================================================
+                        MANOBALA - MENTAL HEALTH PLATFORM
+                           COMPREHENSIVE PROJECT REPORT
+================================================================================
+
+Project Name: Manobala Mental Health Community Platform
+Developer: Sankalp Brahmapurkar
+Email: sankalpbrahmapurkar2005@gmail.com
+Date: November 9, 2025
+Repository: https://github.com/Manobala-GSC/Manobala
+
+================================================================================
+                                EXECUTIVE SUMMARY
+================================================================================
+
+Manobala is a comprehensive mental health support platform designed to provide 
+a safe, supportive environment for individuals seeking mental health resources, 
+professional guidance, and community support. The platform combines modern web 
+technologies to deliver a full-stack solution addressing critical mental health 
+needs in today's society.
+
+================================================================================
+                              PROJECT OVERVIEW
+================================================================================
+
+MISSION:
+To create an accessible, user-friendly platform that bridges the gap between 
+individuals seeking mental health support and qualified professionals while 
+fostering a supportive community environment.
+
+KEY OBJECTIVES:
+1. Provide easy access to mental health resources
+2. Connect users with qualified mental health experts
+3. Create safe spaces for peer support and community discussions
+4. Offer educational content and coping strategies
+5. Implement secure user authentication and data protection
+6. Enable real-time communication and support
+
+================================================================================
+                            TECHNICAL ARCHITECTURE
+================================================================================
+
+TECHNOLOGY STACK:
+
+Frontend:
+- Framework: React 18 with Vite
+- Styling: Tailwind CSS for modern, responsive design
+- State Management: React Context API
+- Routing: React Router DOM
+- Real-time Communication: Socket.IO Client
+- HTTP Client: Axios
+- Date Handling: date-fns
+- Notifications: React Toastify
+- Icons: Lucide React
+
+Backend:
+- Runtime: Node.js
+- Framework: Express.js
+- Database: MongoDB Atlas (Cloud Database)
+- Authentication: JWT (JSON Web Tokens)
+- Password Security: bcryptjs
+- Email Service: Nodemailer
+- Real-time Communication: Socket.IO
+- File Handling: Multer
+- Environment Configuration: dotenv
+- Development: Nodemon
+
+Database:
+- MongoDB Atlas Cloud Database
+- Connection String: mongodb+srv://sankalpbrahmapurkar2005_db_user:***@cluster0.fyzhrad.mongodb.net/manobala_dti
+- Collections: users, blogs, expertApplications, rooms, messages, conversations
+
+================================================================================
+                               CORE FEATURES
+================================================================================
+
+1. USER AUTHENTICATION & AUTHORIZATION
+   - Secure user registration with email verification
+   - JWT-based authentication with HTTP-only cookies
+   - Role-based access control (Regular Users, Experts, Admins)
+   - Password reset functionality via email
+   - Profile management with comprehensive user data
+
+2. EXPERT APPLICATION SYSTEM
+   - Professional application process for mental health experts
+   - Document upload and verification system
+   - Admin review and approval workflow
+   - Expert credential verification
+   - Status tracking and notifications
+
+3. MENTAL HEALTH COMMUNITY FORUMS
+   - Three specialized forum categories:
+     a) Anxiety Support Circle (Mental Wellness)
+     b) Depression Recovery Community (Support Groups)
+     c) Wellness & Lifestyle Hub (Mental Wellness)
+   - Real-time messaging with Socket.IO
+   - Anonymous posting options for privacy
+   - Message reactions and threading
+   - Member count tracking
+   - Moderation capabilities
+
+4. BLOG SYSTEM
+   - User-generated mental health content
+   - Rich text editing capabilities
+   - Blog categorization and tagging
+   - Like and comment functionality
+   - Personal blog management dashboard
+
+5. EXPERT CONSULTATION
+   - Real-time chat with verified mental health professionals
+   - Appointment scheduling system
+   - Private consultation rooms
+   - Session history and notes
+
+6. RESOURCE CENTER
+   - Mental health educational materials
+   - Coping strategies and techniques
+   - Crisis support information
+   - Emergency contact resources
+
+7. ADMIN DASHBOARD
+   - User management and monitoring
+   - Expert application review
+   - Content moderation tools
+   - System analytics and reporting
+   - Platform configuration options
+
+================================================================================
+                              SYSTEM ARCHITECTURE
+================================================================================
+
+CLIENT-SIDE ARCHITECTURE:
+/client
+├── public/                     # Static assets
+├── src/
+│   ├── components/            # Reusable UI components
+│   │   ├── blog/             # Blog-related components
+│   │   ├── forum/            # Forum components
+│   │   ├── AdminRoute.jsx    # Protected admin routes
+│   │   ├── Header.jsx        # Application header
+│   │   ├── Navbar.jsx        # Navigation component
+│   │   └── Sidebar.jsx       # Admin sidebar
+│   ├── context/              # React Context providers
+│   │   ├── AppContext.jsx    # Global application state
+│   │   └── BlogContext.jsx   # Blog-specific state
+│   ├── pages/                # Page components
+│   │   ├── About.jsx         # About page
+│   │   ├── AdminDashboard.jsx# Admin interface
+│   │   ├── AllBlogs.jsx      # Blog listing
+│   │   ├── BlogEditor.jsx    # Blog creation/editing
+│   │   ├── BlogView.jsx      # Individual blog view
+│   │   ├── ChatBot.jsx       # AI chatbot interface
+│   │   ├── Contact.jsx       # Contact page
+│   │   ├── EmailVerify.jsx   # Email verification
+│   │   ├── ExpertChat.jsx    # Expert consultation
+│   │   ├── Forum.jsx         # Forum interface
+│   │   ├── Home.jsx          # Homepage
+│   │   ├── Login.jsx         # Login page
+│   │   ├── MyBlogs.jsx       # User's blogs
+│   │   ├── Resources.jsx     # Resource center
+│   │   └── ResetPassword.jsx # Password reset
+│   ├── assets/               # Application assets
+│   └── main.jsx              # Application entry point
+
+SERVER-SIDE ARCHITECTURE:
+/server
+├── config/                   # Configuration files
+│   ├── mongodb.js           # Database configuration
+│   └── nodemailer.js        # Email configuration
+├── controllers/              # Business logic controllers
+│   ├── adminController.js    # Admin operations
+│   ├── authController.js     # Authentication logic
+│   ├── blogController.js     # Blog operations
+│   ├── chatController.js     # Chat functionality
+│   ├── conversationController.js # Conversations
+│   ├── expertChatController.js   # Expert chat
+│   ├── forumController.js    # Forum operations
+│   └── userController.js     # User management
+├── middleware/               # Custom middleware
+│   ├── adminAuth.js         # Admin authentication
+│   └── userAuth.js          # User authentication
+├── models/                   # Database schemas
+│   ├── blogModel.js         # Blog schema
+│   ├── chatModel.js         # Chat schema
+│   ├── conversationModel.js # Conversation schema
+│   ├── expertChatModel.js   # Expert chat schema
+│   ├── forumModel.js        # Forum schema
+│   └── userModel.js         # User schema
+├── routes/                   # API route definitions
+├── scripts/                  # Utility scripts
+└── index.js                  # Server entry point
+
+================================================================================
+                              DATABASE DESIGN
+================================================================================
+
+USER SCHEMA:
+- _id: ObjectId (Primary Key)
+- name: String (Required)
+- email: String (Unique, Required)
+- password: String (Hashed)
+- isVerified: Boolean (Email verification status)
+- verificationToken: String
+- resetPasswordToken: String
+- resetPasswordExpires: Date
+- role: String (user/expert/admin)
+- profileImage: String (URL)
+- bio: String
+- expertise: Array (For experts)
+- isExpertApproved: Boolean
+- expertApplicationId: ObjectId
+- createdAt: Date
+- updatedAt: Date
+
+FORUM SCHEMA:
+- _id: ObjectId (Primary Key)
+- name: String (Required)
+- description: String (Required)
+- type: String (Unique identifier)
+- category: String (Forum category)
+- icon: String (Emoji representation)
+- color: String (UI color scheme)
+- memberCount: Number (Active members)
+- messages: Array of ObjectId (Message references)
+- moderators: Array of ObjectId (User references)
+- createdAt: Date
+- isActive: Boolean
+
+MESSAGE SCHEMA:
+- _id: ObjectId (Primary Key)
+- content: String (Required)
+- author: ObjectId (User reference)
+- roomId: ObjectId (Forum reference)
+- isAnonymous: Boolean
+- reactions: Array of reaction objects
+- replies: Array of reply objects
+- isEdited: Boolean
+- editedAt: Date
+- createdAt: Date
+
+EXPERT APPLICATION SCHEMA:
+- _id: ObjectId (Primary Key)
+- userId: ObjectId (User reference)
+- qualifications: String
+- experience: String
+- specializations: Array
+- licenseNumber: String
+- documents: Array of file objects
+- status: String (pending/approved/rejected)
+- reviewedBy: ObjectId (Admin reference)
+- reviewNotes: String
+- submittedAt: Date
+- reviewedAt: Date
+
+================================================================================
+                               SECURITY FEATURES
+================================================================================
+
+1. AUTHENTICATION SECURITY:
+   - Password hashing using bcryptjs with salt rounds
+   - JWT tokens with secure HTTP-only cookies
+   - Token expiration and refresh mechanisms
+   - Email verification for account activation
+
+2. DATA PROTECTION:
+   - Input validation and sanitization
+   - SQL injection prevention through MongoDB ODM
+   - XSS protection through proper data encoding
+   - CORS configuration for cross-origin requests
+
+3. AUTHORIZATION:
+   - Role-based access control (RBAC)
+   - Route protection middleware
+   - Admin-only functionality restrictions
+   - Expert verification process
+
+4. PRIVACY FEATURES:
+   - Anonymous posting in forums
+   - Private consultation rooms
+   - User data anonymization options
+   - GDPR compliance considerations
+
+================================================================================
+                            IMPLEMENTATION HIGHLIGHTS
+================================================================================
+
+1. REAL-TIME COMMUNICATION:
+   - Socket.IO implementation for instant messaging
+   - Room-based chat organization
+   - Connection handling and error management
+   - Message broadcasting and delivery confirmation
+
+2. EMAIL SYSTEM:
+   - Nodemailer integration with SMTP
+   - Email verification workflow
+   - Password reset functionality
+   - Notification system for important events
+
+3. FILE HANDLING:
+   - Multer middleware for file uploads
+   - Document management for expert applications
+   - Profile image upload and storage
+   - File type validation and size limits
+
+4. ERROR HANDLING:
+   - Comprehensive try-catch blocks
+   - User-friendly error messages
+   - Logging system for debugging
+   - Graceful fallbacks for failed operations
+
+5. RESPONSIVE DESIGN:
+   - Mobile-first design approach
+   - Tailwind CSS for consistent styling
+   - Cross-browser compatibility
+   - Accessibility considerations
+
+================================================================================
+                               API ENDPOINTS
+================================================================================
+
+AUTHENTICATION ROUTES:
+POST /api/auth/register       - User registration
+POST /api/auth/login          - User login
+POST /api/auth/logout         - User logout
+GET  /api/auth/is-auth        - Authentication check
+POST /api/auth/verify-email   - Email verification
+POST /api/auth/forgot-password- Password reset request
+POST /api/auth/reset-password - Password reset confirmation
+
+USER ROUTES:
+GET  /api/user/profile        - Get user profile
+PUT  /api/user/profile        - Update profile
+POST /api/user/apply-expert   - Expert application
+GET  /api/user/expert-status  - Application status
+
+FORUM ROUTES:
+GET  /api/forum/rooms         - Get all forum rooms
+GET  /api/forum/rooms/:id/messages - Get room messages
+POST /api/forum/rooms/:id/messages - Post new message
+POST /api/forum/messages/:id/reactions - Add reaction
+POST /api/forum/messages/:id/replies - Add reply
+POST /api/forum/rooms/:id/join - Join room
+
+BLOG ROUTES:
+GET  /api/blog/all           - Get all blogs
+GET  /api/blog/user/:id      - Get user blogs
+POST /api/blog/create        - Create new blog
+PUT  /api/blog/:id          - Update blog
+DELETE /api/blog/:id        - Delete blog
+
+ADMIN ROUTES:
+GET  /api/admin/users        - Get all users
+GET  /api/admin/expert-applications - Get applications
+PUT  /api/admin/expert-applications/:id - Review application
+DELETE /api/admin/user/:id   - Delete user
+
+================================================================================
+                              TESTING & QUALITY ASSURANCE
+================================================================================
+
+TESTING STRATEGIES:
+1. Manual testing of all user workflows
+2. API endpoint testing using browser developer tools
+3. Database operation verification
+4. Real-time functionality testing
+5. Cross-browser compatibility testing
+6. Mobile responsiveness verification
+7. Security vulnerability assessment
+
+QUALITY MEASURES:
+- Code organization and modularization
+- Error handling and validation
+- User experience optimization
+- Performance considerations
+- Code documentation and comments
+- Git version control practices
+
+================================================================================
+                             DEPLOYMENT INFORMATION
+================================================================================
+
+DEVELOPMENT ENVIRONMENT:
+- Frontend: Vite development server (Port 5173)
+- Backend: Node.js with Nodemon (Port 5000)
+- Database: MongoDB Atlas cloud database
+
+PRODUCTION CONSIDERATIONS:
+- Environment variable configuration
+- HTTPS certificate requirements
+- CDN integration for static assets
+- Database optimization and indexing
+- Load balancing for high traffic
+- Monitoring and logging systems
+
+HOSTING RECOMMENDATIONS:
+- Frontend: Vercel, Netlify, or AWS S3
+- Backend: Heroku, AWS EC2, or Google Cloud
+- Database: MongoDB Atlas (currently configured)
+- File Storage: AWS S3 or Cloudinary
+
+================================================================================
+                               FUTURE ENHANCEMENTS
+================================================================================
+
+PLANNED FEATURES:
+1. Video consultation capabilities
+2. AI-powered mental health chatbot
+3. Mood tracking and analytics
+4. Group therapy session scheduling
+5. Crisis intervention system
+6. Integration with wearable devices
+7. Multilingual support
+8. Advanced search and filtering
+9. Mobile application development
+10. Telehealth integration
+
+TECHNICAL IMPROVEMENTS:
+1. Performance optimization
+2. Advanced caching strategies
+3. Database query optimization
+4. Enhanced security measures
+5. Automated testing implementation
+6. CI/CD pipeline setup
+7. Microservices architecture
+8. GraphQL API implementation
+9. Progressive Web App features
+10. Advanced analytics integration
+
+================================================================================
+                              CHALLENGES & SOLUTIONS
+================================================================================
+
+CHALLENGES ENCOUNTERED:
+
+1. DATABASE CONNECTIVITY:
+   Problem: Connection timeout issues during forum initialization
+   Solution: Implemented proper connection configuration with timeout settings
+            and error handling
+
+2. AUTHENTICATION FLOW:
+   Problem: JWT token management and user session persistence
+   Solution: HTTP-only cookies with proper expiration and refresh mechanisms
+
+3. REAL-TIME MESSAGING:
+   Problem: Socket.IO connection management and room handling
+   Solution: Proper event listeners and connection lifecycle management
+
+4. DATE FORMATTING:
+   Problem: Invalid date values causing frontend errors
+   Solution: Comprehensive error handling and date validation in components
+
+5. USER ROLE MANAGEMENT:
+   Problem: Complex authorization logic for different user types
+   Solution: Middleware-based role checking and route protection
+
+6. FILE UPLOAD HANDLING:
+   Problem: Expert document verification and storage
+   Solution: Multer integration with proper validation and error handling
+
+================================================================================
+                                 CONCLUSION
+================================================================================
+
+The Manobala Mental Health Platform represents a comprehensive solution to 
+modern mental health support needs. By combining cutting-edge web technologies 
+with user-centric design principles, the platform successfully addresses key 
+challenges in mental health accessibility and community support.
+
+KEY ACHIEVEMENTS:
+✓ Full-stack web application with modern technology stack
+✓ Secure user authentication and authorization system
+✓ Real-time communication capabilities
+✓ Expert verification and consultation system
+✓ Community-driven support forums
+✓ Comprehensive admin management tools
+✓ Mobile-responsive design
+✓ Scalable architecture design
+
+IMPACT POTENTIAL:
+- Improved accessibility to mental health resources
+- Enhanced peer support through community forums
+- Streamlined expert consultation process
+- Reduced stigma through anonymous support options
+- Educational resource accessibility
+- Crisis support integration
+
+TECHNICAL EXCELLENCE:
+- Clean, maintainable code architecture
+- Secure data handling and privacy protection
+- Efficient database design and operations
+- Responsive user interface design
+- Error handling and user feedback systems
+- Scalable system architecture
+
+The platform stands as a testament to the power of technology in addressing 
+critical social needs, providing a foundation for expanding mental health 
+support accessibility and effectiveness in the digital age.
+
+================================================================================
+                              PROJECT STATISTICS
+================================================================================
+
+Lines of Code: ~15,000+ (Estimated across frontend and backend)
+Files Created: 50+
+Components Developed: 25+
+API Endpoints: 30+
+Database Collections: 6
+Features Implemented: 7 major feature sets
+Development Time: Multiple development cycles
+Technologies Used: 20+ libraries and frameworks
+
+================================================================================
+                                   APPENDIX
+================================================================================
+
+ENVIRONMENT VARIABLES REQUIRED:
+- MONGO_URI: MongoDB connection string
+- JWT_SECRET: JWT signing secret
+- EMAIL_HOST: SMTP server host
+- EMAIL_PORT: SMTP server port
+- EMAIL_USER: Email service username
+- EMAIL_PASS: Email service password
+- NODE_ENV: Environment setting
+- PORT: Server port configuration
+
+DEPENDENCIES:
+Frontend: react, react-dom, react-router-dom, axios, tailwindcss, socket.io-client
+Backend: express, mongoose, jsonwebtoken, bcryptjs, nodemailer, socket.io, multer
+
+================================================================================
+END OF REPORT
+================================================================================
