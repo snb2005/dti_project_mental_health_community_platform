@@ -129,14 +129,3 @@ Contributions are welcome! If you’d like to enhance Manobala:
 3. **Submit a pull request with a clear description**  
 
 ---
-
-## 💬 Contact
-
-Have questions or suggestions?
-
-📧 **Email:** teammanobala@gmail.com  
-
----
-
-### 🌍 *Empowering voices. Restoring hope.*  
-### **Built with ❤️ for the Google Solution Challenge-2025**  
